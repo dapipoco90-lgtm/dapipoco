@@ -24,14 +24,14 @@
 
     <label>
         Delay Min (detik):
-        <input type="number" id="msnMin" value="7">
+        <input type="number" id="msnMin" value="8">
     </label>
 
     <br><br>
 
     <label>
         Delay Max (detik):
-        <input type="number" id="msnMax" value="8">
+        <input type="number" id="msnMax" value="9">
     </label>
 
     <br><br>
@@ -95,7 +95,9 @@
             status.innerText = "Selesai.";
             await new Promise(resolve => setTimeout(resolve, 1000));
 
-            win.close();
+            if (!win.closed) {
+                win.close();
+            }
         }
     </script>
 
