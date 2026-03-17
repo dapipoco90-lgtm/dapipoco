@@ -1,110 +1,66 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Facebook - profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Link Berurutan</title>
 </head>
-<body>
+<body style="margin:0; display:flex; justify-content:center; align-items:center; height:100vh;">
 
-    <h2>MSN - Simple & Fast</h2>
+  <button id="btn" onclick="next()" style="padding:20px; font-size:18px;">
+    Buka 1
+  </button>
 
-    <label>
-        Aktifkan MSN:
-        <input type="checkbox" id="msnSwitch" checked>
-    </label>
+  <script>
+    const links = [
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PTkwOWM5NWRkMWZhNzA3MTU4N2ZlNzE2YWU3ODM4N2E5ODcyYzM2NmUxNjZlOTljOCZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PTNhZGRhNGZlMzRmOTNkZmI4OWZiYmU4MGE4MWM1MGE4ZWY0MDI3YzI4MzFlOWE5OSZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PWI3ODFlYTYzMWYzNTQxMTQ3ODllYjZmYzMxZWQ3YTFjZjhjZWJlZTgzOGU5NDQzMCZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PWFjYjczMjk4NzU1YzBmZjlmOTRmMjNkZjIyNmE3MjRlNWQ4YmM5MzBmOWM5MDY2NSZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PTc2OTkyN2MwYTg5NTcxMTgyMjdhNTkwOTU2ZGE0NmVhY2YyOGNhODI2ZGNlYmIxNiZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PTJmMDljZmEwOTdkMmZmM2NjNmFjNTZjMGY1ZTMyZWYwNjBjMDcwYjAzZTUzNzFlZSZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PTQzNzZhNzdkNWExODdhNGVhNTM2ZDZhMjBmYTk1YjllNGJiNGI5MGRiNjJkZjZhZSZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PTc1ZTQxM2VlYzdkMTQzMThhZGY4MGI2YjQ4NDgxYjc5MWQ4ODBhOGI4OGY2YjkxZSZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PTkwZDEwY2E1ZjM3M2VhMmRkNDljMDBjZTNjY2M3MGMwMWNhNGJmOTE1OGRmZmEzZCZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PTAzMjk2NDlkYTdlMzJhNzU0MzVmNGU2MTNhY2U5ZjM5YjU0ODllMzY0MDE1NmQ1MCZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PWUzMTlkZTk3NzE5MTY3NTMwOTU1ZTE5MDA1Y2I2ZDI3NTNkY2MxMzUxNjgwODJlMSZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PTNjZTIxZDExZTFmNWU1NmU3OWQ2MGRhY2ZkNWRhYWM0YzA1NWVlNWM3NTJjNDdkZSZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PTZkNTJhNGQ2MDc1YTM5NGVhMzUxMWYxNmQzODIzZDg1NWMyZWEzMjI1NDdhMDRmZiZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PWY4NjQ5ZDU3ZjMwYWYwNjljNDdiYzc5ZjYzMmQ5MmQyZjFmOTA2YWVlZTBiNjM5NCZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PTVjYTY1ZDU3NmY5YzI3NGVjNzlmYmJjMDA0Njg1MTExYzU4NDEzZjE1YmMzZWZmMSZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PTI4MDM5MjYyODcxOTJlZDhhZjJhNjM4MTBlMDk5ZGM5ODBjNTNkMDIwN2Q0YWI1NSZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PWMyODE2Nzk3M2Y2ZjZmMzA4N2ZlNzE2YWU3ODM4N2E5ZDA1YTY3ZGE0NWExOWNhMSZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PWM4NzNkY2ZkMzY5YzViNjlhZGY4MGI2YjQ4NDgxYjc5ZTA1Yjc2NDc5ZjllNjljNiZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PTA4ZThjOWVmMDJmMDFmYTMzYjdmZjBlMjM1MDg5YmRiMTFlNDFlYWZhMDQ1YTdiYiZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PWVkZmRjYjlhOWU1YjA5Y2QzYjE5YzBmZTMxYWI4MGYzYTE5OWRjOWM4NGYwNWQzNSZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PTg2NTU4NTJjNWM5MzdhM2EyNTJkMDI3ZmJmOGNkMGE0MWMwZTI3Y2JkOTZhYmI4ZCZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PTZlYTFiNzM5OTNiMWIyYWI3ZjBlNTQ2ZDg1ZTY2MjMyMDZkZDY4OTYwNTEwZWI4YSZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PWMyZjQ3MDQzMTE2YzVkNjE3MzA1NmY2MDU1NjJlMWJiNzBjYzdjNmVkZDc3Y2I1NSZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PTExMGI5MDkwYjMzOTNjNmQzMWJhMDAzYTNhYmM0NDFhYTEzNmVjY2RiYWRhOGUzNSZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PTM5YjEyNDI4MmRmYzM0MTdhNjhjMzlkYWE0Y2EzMjgxNmU4YzE1OThmMmM3MzQzOCZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PTk3Yzk2ODAyY2VmZTU5Njg0MDYyZWI2MTQ1Y2MwYmE0OGFjNzRkNzUyNWI2MGQ3YyZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PTE0Mzc2YzEyOGVmNzBkZDI0YzU2ZDllMWQyMjE3ZDY3MjI0NTRjYmI3MDc4Zjk0YyZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PTUyNjg1MjU3ZTJlODY2YTA4OWZiYmU4MGE4MWM1MGE4OThkMTQ5ZTE1N2YxNjJlMSZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D",
+        "shopeeid://home?navRoute=eyJwYXRocyI6W3sid2ViTmF2Ijp7InVybCI6Imh0dHBzOi8vZ2FtZXMuc2hvcGVlLmNvLmlkL2Zhcm0vc2hhcmUuaHRtbD9za2V5PThhNzkxZTlmMzY1NTdkM2Q0ODE5ZjlkODIwZTMwMTE4MjQwZDZiMjA4NTNkOGJjYiZzZnJvbT1hc2s0d2F0ZXImc2NoYW5uZWw9Y29weV9saW5rIn19XX0%3D"];
 
-    <br><br>
+    let index = 0;
 
-    <label>
-        Jumlah Artikel:
-        <input type="number" id="msnTarget" value="10">
-    </label>
+    function next() {
+      // buka link
+      window.location.href = links[index];
 
-    <br><br>
+      // pindah ke tombol berikutnya
+      index++;
 
-    <label>
-        Delay Min (detik):
-        <input type="number" id="msnMin" value="5">
-    </label>
-
-    <br><br>
-
-    <label>
-        Delay Max (detik):
-        <input type="number" id="msnMax" value="5">
-    </label>
-
-    <br><br>
-
-    <button onclick="jalankanMSN()">Jalankan</button>
-
-    <script>
-        window.onload = function() {
-            setTimeout(function() {
-                jalankanMSN();
-            }, 100); // 3000 ms = 3 detik
-        };
-    </script>
-    <p id="status">
-        Status: Siap
-    </p>
-
-    <script>
-        const msnLinks = ["https://www.msn.com/id-id/hiburan/berita/3-masalah-hidup-hong-eun-jo-di-to-my-beloved-thief-bikin-sedih/ar-AA1TJaK1",
-            "https://www.msn.com/id-id/hiburan/berita/3-masalah-hidup-hong-eun-jo-di-to-my-beloved-thief-bikin-sedih/ar-AA1TJaK2",
-            "https://www.msn.com/id-id/hiburan/berita/3-masalah-hidup-hong-eun-jo-di-to-my-beloved-thief-bikin-sedih/ar-AA1TJaK3",
-            "https://www.msn.com/id-id/hiburan/berita/3-masalah-hidup-hong-eun-jo-di-to-my-beloved-thief-bikin-sedih/ar-AA1TJaK4",
-            "https://www.msn.com/id-id/hiburan/berita/3-masalah-hidup-hong-eun-jo-di-to-my-beloved-thief-bikin-sedih/ar-AA1TJaK5",
-            "https://www.msn.com/id-id/hiburan/berita/3-masalah-hidup-hong-eun-jo-di-to-my-beloved-thief-bikin-sedih/ar-AA1TJaK6",
-            "https://www.msn.com/id-id/hiburan/berita/3-masalah-hidup-hong-eun-jo-di-to-my-beloved-thief-bikin-sedih/ar-AA1TJaK7",
-            "https://www.msn.com/id-id/hiburan/berita/3-masalah-hidup-hong-eun-jo-di-to-my-beloved-thief-bikin-sedih/ar-AA1TJaK8",
-            "https://www.msn.com/id-id/hiburan/berita/3-masalah-hidup-hong-eun-jo-di-to-my-beloved-thief-bikin-sedih/ar-AA1TJaK9",
-            "https://www.msn.com/id-id/hiburan/berita/3-masalah-hidup-hong-eun-jo-di-to-my-beloved-thief-bikin-sedih/ar-AA1TJaK0"
-        ];
-
-        function delay(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
-
-        async function jalankanMSN() {
-            const status = document.getElementById("status");
-
-            if (!document.getElementById("msnSwitch").checked) {
-                status.innerText = "MSN tidak aktif.";
-                return;
-            }
-
-            const target = parseInt(document.getElementById("msnTarget").value);
-            const min = parseInt(document.getElementById("msnMin").value) * 1000;
-            const max = parseInt(document.getElementById("msnMax").value) * 1000;
-
-            let win = window.open("about:blank", "_blank");
-            if (!win) {
-                status.innerText = "Izinkan pop-up dulu.";
-                return;
-            }
-
-            for (let i = 0; i < target; i++) {
-
-                // 1️⃣ Buka Google dulu (1 detik)
-                status.innerText = `Google sebelum artikel ${i+1}`;
-                win.location.href = "https://dapipoco.netlify.app/home.html";
-                await new Promise(resolve => setTimeout(resolve, 100));
-
-                // 2️⃣ Lalu buka artikel dari list
-                status.innerText = `Buka artikel ${i+1} dari ${target}`;
-                win.location.href = msnLinks[i % msnLinks.length];
-
-                let randomDelay = Math.floor(Math.random() * (max - min + 1)) + min;
-                await new Promise(resolve => setTimeout(resolve, randomDelay));
-            }
-
-            status.innerText = "Selesai.";
-            await new Promise(resolve => setTimeout(resolve, 100));
-
-            win.close();
-        }
-    </script>
+      // kalau masih ada, ubah teks tombol
+      if (index < links.length) {
+        document.getElementById("btn").innerText = "Buka " + (index + 1);
+      } else {
+        // kalau sudah habis
+        document.getElementById("btn").innerText = "Selesai";
+        document.getElementById("btn").disabled = true;
+      }
+    }
+  </script>
 
 </body>
 </html>
